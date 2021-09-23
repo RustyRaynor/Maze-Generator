@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathFinder : MonoBehaviour
+public class PathFindingNew : MonoBehaviour
 {
-    [SerializeField] AStarGrid grid;
+	[SerializeField] Grid grid;
 
-    public List<Vector3> FindPath(Vector3 startPos, Vector3 endPos)
-    {
+	public List<Vector3> FindPath(Vector3 startPos, Vector3 endPos)
+	{
 		Node startNode = grid.GetWorldPoint(startPos);
 		Node targetNode = grid.GetWorldPoint(endPos);
 
@@ -58,30 +58,30 @@ public class PathFinder : MonoBehaviour
 		return null;
 	}
 
-    int GetDifference(Node nodeOne, Node nodeTwo)
-    {
-        int x = Mathf.Abs(nodeOne.x - nodeTwo.x);
-        int y = Mathf.Abs(nodeOne.y - nodeTwo.y);
+	int GetDifference(Node nodeOne, Node nodeTwo)
+	{
+		int x = Mathf.Abs(nodeOne.x - nodeTwo.x);
+		int y = Mathf.Abs(nodeOne.y - nodeTwo.y);
 
-        if (x > y)
-            return 14 * y + 10 * (x - y);
-        return 14 * x + 10 * (y - x);
-    }
+		if (x > y)
+			return 14 * y + 10 * (x - y);
+		return 14 * x + 10 * (y - x);
+	}
 
-    List<Vector3> GetPath(Node startNode, Node endNode)
-    {
-        List<Vector3> path = new List<Vector3>();
+	List<Vector3> GetPath(Node startNode, Node endNode)
+	{
+		List<Vector3> path = new List<Vector3>();
 
-        Node currentNode = endNode;
+		Node currentNode = endNode;
 
-        while(currentNode != startNode)
-        {
-            path.Add(currentNode.worldPosition);
-            currentNode = currentNode.parent;
-        }
+		while (currentNode != startNode)
+		{
+			path.Add(currentNode.worldPosition);
+			currentNode = currentNode.parent;
+		}
 
-        path.Reverse();
+		path.Reverse();
 
-        return path;
-    }
+		return path;
+	}
 }

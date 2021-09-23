@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] PathFinder path;
+    [SerializeField] PathFindingNew path;
     [SerializeField] float speed;
     [SerializeField] LayerMask blocks;
 
