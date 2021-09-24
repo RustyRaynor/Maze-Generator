@@ -16,8 +16,9 @@ public class Player : MonoBehaviour
     
              Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
     
-             if (Physics.Raycast(ray, out hit, blocks))
+             if (Physics.Raycast(ray,out hit, Mathf.Infinity, blocks))
              {
+                StopAllCoroutines();
                StartCoroutine(Moving(path.FindPath(transform.position, hit.transform.position)));
              }
          }

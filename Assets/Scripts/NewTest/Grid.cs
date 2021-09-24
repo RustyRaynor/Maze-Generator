@@ -132,7 +132,7 @@ public class Grid : MonoBehaviour
         int yPos = Random.Range(0, (int)dimensions.y);
 
         player.transform.position = new Vector3(gridFloors[xPos, yPos].transform.position.x, 3.39f, gridFloors[xPos, yPos].transform.position.z);
-
+        gridFloors[xPos, yPos].GetComponent<MeshRenderer>().material.color = Color.cyan;
         Destroy(gridFloors[xPos, yPos].leftWall);
 
         gridFloors[xPos, yPos].visited = true;
@@ -257,7 +257,10 @@ public class Grid : MonoBehaviour
 
     void CreateEndPoint()
     {
-        Destroy(gridFloors[ (int)dimensions.x - 1, Random.Range(0, (int)dimensions.y)].rightWall);
+        int no = Random.Range(0, (int)dimensions.y);
+
+        gridFloors[(int)dimensions.x - 1, no].GetComponent<MeshRenderer>().material.color = Color.green;
+        Destroy(gridFloors[ (int)dimensions.x - 1, no].rightWall);
     }
 
     IEnumerator SetGrid()
